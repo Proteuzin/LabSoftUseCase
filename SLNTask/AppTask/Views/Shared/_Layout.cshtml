@@ -8,65 +8,128 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AppTask.styles.css" asp-append-version="true" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Sobrescreve as classes padronizadas do Bootstrap */
+        
+        :root {
+            --bg-body: #0b0f17;          /* Preto Grafite Profundo */
+            --bg-card: #151c28;          /* Azul Noite Elevado */
+            --bg-navbar: #151c28;        /* Superfície da Navbar */
+            --accent-cyan: #38bdf8;      /* Cyan Elétrico */
+            --accent-hover: rgba(56, 189, 248, 0.12);
+            --text-main: #f1f5f9;        /* Texto Branco Suave */
+            --text-muted: #94a3b8;       /* Texto Cinza Azulado */
+            --border-subtle: #243044;    /* Borda sutil de contraste */
+        }
+
         body {
-            background-color: #f4f6f8 !important;
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-body) !important;
+            font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !important;
+            color: var(--text-main) !important;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            margin: 0;
         }
 
-        /* Estilização e destaque na barra superior */
+    
         header .navbar {
-            background-color: #ffffff !important;
-            border-bottom: 3px solid #0d6efd !important;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
-            padding-top: 0.8rem;
-            padding-bottom: 0.8rem;
+            background-color: var(--bg-navbar) !important;
+            border-bottom: 1px solid var(--border-subtle) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+            padding-top: 0.85rem;
+            padding-bottom: 0.85rem;
         }
 
-        /* Marca AppTask em azul destacado */
+        
         .navbar-brand {
-            color: #0d6efd !important;
+            color: var(--accent-cyan) !important;
             font-weight: 700 !important;
-            font-size: 1.25rem;
+            font-size: 1.3rem !important;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Sobrescreve a classe text-dark dos links */
+        .navbar-brand::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        
         .navbar-nav .nav-link,
         .navbar-nav .nav-link.text-dark {
-            color: #495057 !important;
+            color: var(--text-muted) !important;
             font-weight: 500 !important;
-            padding: 0.5rem 0.85rem !important;
-            border-radius: 6px;
-            transition: all 0.2s ease-in-out;
+            padding: 0.5rem 0.9rem !important;
+            border-radius: 8px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
 
-        /* Efeito de destaque azul ao passar o mouse */
+        
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.text-dark:hover {
-            color: #0d6efd !important;
-            background-color: #e7f1ff !important;
+            color: var(--accent-cyan) !important;
+            background-color: var(--accent-hover) !important;
+            transform: translateY(-1px);
         }
 
-        /* Container do conteúdo em formato de cartão limpo */
+        
+        .navbar-toggler {
+            border-color: var(--border-subtle) !important;
+            filter: invert(1);
+        }
+
+        
         main {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            margin-top: 1rem;
-            margin-bottom: 2rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 2.5rem;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+            margin-top: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-main);
         }
 
+        
+        main h1, main h2, main h3, main h4 {
+            color: #ffffff !important;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        main p, main span, main td, main th, main label {
+            color: var(--text-main);
+        }
+
+        
         footer {
             margin-top: auto;
-            background-color: #ffffff !important;
-            border-top: 1px solid #dee2e6 !important;
-            padding: 1rem 0;
-            color: #6c757d;
+            background-color: var(--bg-navbar) !important;
+            border-top: 1px solid var(--border-subtle) !important;
+            padding: 1.2rem 0 !important;
+            color: var(--text-muted) !important;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent-cyan) !important;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -103,12 +166,11 @@
             @RenderBody()            
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - AppTask - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2026 - AppTask - Desenvolvido por <strong>Frank Eliel</strong> (frank.e.santos@aluno.senai.br)
+    </div>
+</footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
