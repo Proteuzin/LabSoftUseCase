@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +7,68 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AppTask.styles.css" asp-append-version="true" />
+
+    <style>
+        /* Sobrescreve as classes padronizadas do Bootstrap */
+        body {
+            background-color: #f4f6f8 !important;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Estilização e destaque na barra superior */
+        header .navbar {
+            background-color: #ffffff !important;
+            border-bottom: 3px solid #0d6efd !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+
+        /* Marca AppTask em azul destacado */
+        .navbar-brand {
+            color: #0d6efd !important;
+            font-weight: 700 !important;
+            font-size: 1.25rem;
+        }
+
+        /* Sobrescreve a classe text-dark dos links */
+        .navbar-nav .nav-link,
+        .navbar-nav .nav-link.text-dark {
+            color: #495057 !important;
+            font-weight: 500 !important;
+            padding: 0.5rem 0.85rem !important;
+            border-radius: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Efeito de destaque azul ao passar o mouse */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.text-dark:hover {
+            color: #0d6efd !important;
+            background-color: #e7f1ff !important;
+        }
+
+        /* Container do conteúdo em formato de cartão limpo */
+        main {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            margin-top: auto;
+            background-color: #ffffff !important;
+            border-top: 1px solid #dee2e6 !important;
+            padding: 1rem 0;
+            color: #6c757d;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -31,8 +93,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Tarefa" asp-action="Sobre">Sobre</a>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
