@@ -18,7 +18,6 @@ namespace AppTask.Controllers
             _context = context;
         }
 
-        // GET: Tarefa
         public async Task<IActionResult> Index()
         {
             var dbTasksContext = _context.Tarefas.Include(t => t.Funcionario);
@@ -30,7 +29,7 @@ namespace AppTask.Controllers
             return View();
         }
 
-        // GET: Tarefa/Details/5
+      
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,7 +48,6 @@ namespace AppTask.Controllers
             return View(tarefa);
         }
 
-        // GET: Tarefa/Create
         public IActionResult Create()
         {
             ViewData["ListaFuncionario"] = new SelectList(_context.Funcionarios, "Codigo", "Nome");
@@ -57,9 +55,7 @@ namespace AppTask.Controllers
             return View();
         }
 
-        // POST: Tarefa/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Codigo,Descricao,DataPlanejada,DataIniciada,DataFinalizada,DataCancelada,StatusTarefa,Prazo,FuncionarioId")] Tarefa tarefa)
@@ -74,7 +70,7 @@ namespace AppTask.Controllers
             return View(tarefa);
         }
 
-        // GET: Tarefa/Edit/5
+       
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,10 +87,7 @@ namespace AppTask.Controllers
             return View(tarefa);
         }
 
-        // POST: Tarefa/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+       
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Codigo,Descricao,DataPlanejada,DataIniciada,DataFinalizada,DataCancelada,StatusTarefa,Prazo,CodigoFuncionario")] Tarefa tarefa)
         {
@@ -127,7 +120,7 @@ namespace AppTask.Controllers
             return View(tarefa);
         }
 
-        // GET: Tarefa/Delete/5
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -146,7 +139,6 @@ namespace AppTask.Controllers
             return View(tarefa);
         }
 
-        // POST: Tarefa/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
