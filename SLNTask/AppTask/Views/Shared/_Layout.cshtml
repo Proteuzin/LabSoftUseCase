@@ -13,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        
         :root {
             --bg-body: #0b0f17;          /* Preto Grafite Profundo */
             --bg-card: #151c28;          /* Azul Noite Elevado */
@@ -35,7 +34,6 @@
             margin: 0;
         }
 
-    
         header .navbar {
             background-color: var(--bg-navbar) !important;
             border-bottom: 1px solid var(--border-subtle) !important;
@@ -44,7 +42,6 @@
             padding-bottom: 0.85rem;
         }
 
-        
         .navbar-brand {
             color: var(--accent-cyan) !important;
             font-weight: 700 !important;
@@ -65,7 +62,6 @@
             box-shadow: 0 0 10px var(--accent-cyan);
         }
 
-        
         .navbar-nav .nav-link,
         .navbar-nav .nav-link.text-dark {
             color: var(--text-muted) !important;
@@ -75,7 +71,6 @@
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
 
-        
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.text-dark:hover {
             color: var(--accent-cyan) !important;
@@ -83,13 +78,11 @@
             transform: translateY(-1px);
         }
 
-        
         .navbar-toggler {
             border-color: var(--border-subtle) !important;
             filter: invert(1);
         }
 
-        
         main {
             background-color: var(--bg-card);
             border: 1px solid var(--border-subtle);
@@ -101,7 +94,6 @@
             color: var(--text-main);
         }
 
-        
         main h1, main h2, main h3, main h4 {
             color: #ffffff !important;
             font-weight: 700;
@@ -112,7 +104,6 @@
             color: var(--text-main);
         }
 
-        
         footer {
             margin-top: auto;
             background-color: var(--bg-navbar) !important;
@@ -156,6 +147,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Tarefa" asp-action="Sobre">Sobre</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Funcionario" asp-action="Index">Funcionario</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Incidente" asp-action="Index">Incidente</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -166,11 +163,11 @@
             @RenderBody()            
         </main>
     </div>
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2026 - AppTask - Desenvolvido por <strong>Frank Eliel</strong> (frank.e.santos@aluno.senai.br)
-    </div>
-</footer>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - AppTask - Desenvolvido por <strong>Frank Eliel</strong> (frank.e.santos@aluno.senai.br)
+        </div>
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
