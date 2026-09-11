@@ -12,10 +12,12 @@ namespace AppTask.Controllers
     public class TarefaController : Controller
     {
         private readonly DbTasksContext _context;
+        private RegraTarefa _regraTarefa;
 
         public TarefaController(DbTasksContext context)
         {
             _context = context;
+            _regraTarefa = new RegraTarefa();
         }
 
         public async Task<IActionResult> Index()
@@ -23,13 +25,12 @@ namespace AppTask.Controllers
             var dbTasksContext = _context.Tarefas.Include(t => t.Funcionario);
             return View(await dbTasksContext.ToListAsync());
         }
+
         public async Task<IActionResult> Sobre()
         {
-
             return View();
         }
 
-      
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -55,7 +56,6 @@ namespace AppTask.Controllers
             return View();
         }
 
-      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Codigo,Descricao,DataPlanejada,DataIniciada,DataFinalizada,DataCancelada,StatusTarefa,Prazo,FuncionarioId")] Tarefa tarefa)
@@ -70,7 +70,7 @@ namespace AppTask.Controllers
             return View(tarefa);
         }
 
-       
+        // GET: Tarefa/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,20 +83,20 @@ namespace AppTask.Controllers
             {
                 return NotFound();
             }
-            ViewData["CodigoFuncionario"] = new SelectList(_context.Funcionarios, "Codigo", "Nome", tarefa.FuncionarioId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "Codigo", "Nome", tarefa.FuncionarioId);
             return View(tarefa);
         }
 
-       
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Codigo,Descricao,DataPlanejada,DataIniciada,DataFinalizada,DataCancelada,StatusTarefa,Prazo,CodigoFuncionario")] Tarefa tarefa)
+        public async Task<IActionResult> Edit(int id, [Bind("Codigo,Descricao,DataPlanejada,DataIniciada,DataFinalizada,DataCancelada,StatusTarefa,Prazo,FuncionarioId")] Tarefa tarefa)
         {
             if (id != tarefa.Codigo)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && _regraTarefa.validarDataFinal(tarefa.DataIniciada, tarefa.DataFinalizada))
             {
                 try
                 {
@@ -116,11 +116,10 @@ namespace AppTask.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CodigoFuncionario"] = new SelectList(_context.Funcionarios, "Codigo", "Nome", tarefa.FuncionarioId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "Codigo", "Nome", tarefa.FuncionarioId);
             return View(tarefa);
         }
 
-        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -156,6 +155,18 @@ namespace AppTask.Controllers
         private bool TarefaExists(int id)
         {
             return _context.Tarefas.Any(e => e.Codigo == id);
+        }
+    }
+
+    public class RegraTarefa
+    {
+        public bool validarDataFinal(DateTime? dataIniciada, DateTime? dataFinalizada)
+        {
+            if (dataIniciada.HasValue && dataFinalizada.HasValue)
+            {
+                return dataFinalizada >= dataIniciada;
+            }
+            return true;
         }
     }
 }
